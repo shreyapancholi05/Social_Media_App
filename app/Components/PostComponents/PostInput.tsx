@@ -20,7 +20,6 @@ import {
 import { db } from "@/app/Firebase/firebase";
 import { useAuthStore } from "@/app/store/AuthStore";
 import { useGlobalStore } from "@/app/store/GlobalStore";
-import { stat } from "fs";
 
 interface PostInputProps {
   insideModal?: boolean;
@@ -29,12 +28,12 @@ function PostInput({ insideModal }: PostInputProps) {
   const [text, setText] = useState("");
   const user = useAuthStore((state) => state.user);
   const selectedPost = useGlobalStore((state) => state.selectedPost);
-  const closeModal = useGlobalStore((state) => state.closeModal)
-  const openModal = useGlobalStore((state) => state.openModal)
+  const closeModal = useGlobalStore((state) => state.closeModal);
+  const openModal = useGlobalStore((state) => state.openModal);
   const sendPost = async () => {
-
-    if(!user?.username){
+    if (!user?.username) {
       openModal("login");
+      return;
     }
     await addDoc(collection(db, "posts"), {
       text: text,
@@ -49,17 +48,21 @@ function PostInput({ insideModal }: PostInputProps) {
   };
 
   const sendComment = async () => {
+    if (!user?.username) {
+      openModal("login");
+      return;
+    }
     if (!selectedPost?.id || !text.trim()) return;
     console.log(user?.name);
     console.log(user?.username);
-    
+
     const postRef = doc(db, "posts", selectedPost.id);
     await updateDoc(postRef, {
       comments: arrayUnion({
         name: user?.name,
         username: user?.username,
         text: text,
-        timestamp: new Date()
+        timestamp: new Date(),
       }),
     });
     setText("");

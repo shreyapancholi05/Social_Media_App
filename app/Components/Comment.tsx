@@ -6,18 +6,22 @@ import {
 } from "@heroicons/react/24/outline";
 import PostHeader from "./PostComponents/PostHeader";
 
+
 interface CommentProps {
-  name: string
-  username: string
-  text: string
+  name: string;
+  username: string;
+  text: string;
+  id: string;
 }
-function Comment({name, username, text}: CommentProps) {
+function Comment({ name, username, text}: CommentProps) {
+ 
   return (
     <div className="border-b border-gray-100">
       <PostHeader
         name={name}
         username={username}
         text={text}
+        
       ></PostHeader>
 
       <div className="flex space-x-14 p-3 ms-16">

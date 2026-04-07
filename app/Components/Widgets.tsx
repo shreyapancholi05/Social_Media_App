@@ -18,7 +18,7 @@ function Widgets() {
       </div>
 
       <div className="bg-neutral-200/70 rounded-xl    p-3">
-        <h1 className="text-xl font-bold mb-2">What's happening</h1>
+        <h1 className="text-xl font-bold mb-2">What is happening</h1>
 
         <div className="flex flex-col text-sm py-3 space-y-0.5">
           <div className="flex justify-between text-gray-600 text-[14px]">

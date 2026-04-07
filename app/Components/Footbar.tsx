@@ -17,7 +17,7 @@ function SignUpPrompt() {
 
       <div className="fixed w-full h-20 bg-amber-300 bottom-0 flex justify-center items-center md:space-x-10 lg:justify-between  lg:px-20 xl:px-40 2xl:px-80 z-40">
         <div className="hidden md:flex flex-col text-white ">
-          <span className="text-xl font-bold">Don't miss out on the buzz</span>
+          <span className="text-xl font-bold">Do not miss out on the buzz</span>
           <span>People on Busy Bee are always the first to know</span>
         </div>
         <div className="flex space-x-3 w-full md:w-fit p-3">

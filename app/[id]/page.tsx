@@ -20,22 +20,21 @@ const fetchPost = async (id: string) => {
   const postRef = doc(db, "posts", id);
   const postSnap = await getDoc(postRef);
   return postSnap.data();
-  
 };
 interface PageProps {
   params: {
-    id: string
-  }
+    id: string;
+  };
 }
 
 interface Commentprops {
-    name: string
-            text: string
-            username: string
-          
+  name: string;
+  text: string;
+  username: string;
+  id: string;
 }
 async function page({ params }: PageProps) {
-  const { id } = await params;
+  const { id } = params;
   const post = await fetchPost(id);
   console.log("Post:", post);
 
@@ -86,15 +85,19 @@ async function page({ params }: PageProps) {
             <ArrowUpTrayIcon className="w-6 h-6 text-[#707E89] cursor-not-allowed" />
           </div>
 
-          { 
-          post?.comments.map((comment: Commentprops ) => (
-
-            <Comment name={comment.name} username={comment.username} text={comment.text}/>
+          {post?.comments.map((comment: Commentprops, index: number) => (
+            <Comment
+              key={index}
+              id={index.toString()}
+              name={comment.name}
+              username={comment.username}
+              text={comment.text}
+            />
           ))}
         </div>
 
         <Widgets></Widgets>
-      </div> 
+      </div>
 
       <SignUpPrompt></SignUpPrompt>
       <DisplayModal></DisplayModal>

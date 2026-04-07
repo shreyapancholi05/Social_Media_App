@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { signInWithEmailAndPassword, signInAnonymously } from "firebase/auth";
-import { auth, db } from "@/app/Firebase/firebase";
+import { auth } from "@/app/Firebase/firebase";
 import { useGlobalStore } from "@/app/store/GlobalStore";
 import { useAuthStore } from "@/app/store/AuthStore";
 import { CircularProgress } from "@mui/material";
@@ -62,7 +62,7 @@ function Login() {
       useAuthStore.getState().setUser({
         name: "Guest",
         uid: credentials.user.uid,
-        email: "guest@gm.com" || "",
+        email: "guest@gm.com",
         username: "Guest",
       });
 

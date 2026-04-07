@@ -71,7 +71,7 @@ function SIgnUp() {
       useAuthStore.getState().setUser({
         name: "Guest",
         uid: credentials.user.uid,
-        email: "guest@gm.com" || "",
+        email: "guest@gm.com",
         username: "Guest",
       });
 

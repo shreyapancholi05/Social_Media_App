@@ -22,7 +22,7 @@ function AuthListener() {
     });
     return () => unsubscribe();
   }, []);
-  return;
+  return null;
 }
 
 export default AuthListener;
