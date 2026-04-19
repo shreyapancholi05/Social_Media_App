@@ -16,8 +16,14 @@ import Comment from "../Components/Comment";
 import Link from "next/link";
 import Image from "next/image";
 
+
 const fetchPost = async (id: string) => {
-  const postRef = doc(db, "posts", id);
+   if (!id) {
+    console.error("ID is undefined ");
+    return null;
+  }
+  console.log('not reading')
+  const postRef =  doc(db, "posts", id);
   const postSnap = await getDoc(postRef);
   return postSnap.data();
 };
@@ -34,7 +40,7 @@ interface Commentprops {
   id: string;
 }
 async function page({ params }: PageProps) {
-  const { id } = params;
+  const { id } = await params;
   const post = await fetchPost(id);
   console.log("Post:", post);
 
